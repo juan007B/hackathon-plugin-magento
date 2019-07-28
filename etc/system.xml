@@ -1,0 +1,450 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <hint>
+                    <frontend_model>placetopay/adminhtml_system_config_fieldset_hint</frontend_model>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </hint>
+            </groups>
+        </payment>
+        <placetopay translate="label" module="placetopay">
+            <label>
+                <![CDATA[<img src="https://static.placetopay.com/redirect/images/providers/placetopay.svg" border="0" height="18" alt="PlacetoPay"/>]]></label>
+            <header_css>placetopay-header</header_css>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>350</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <global translate="label comment">
+                    <label>Merchant Parameters</label>
+                    <comment></comment>
+                    <fieldset_css>placetopay-config</fieldset_css>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <merchantname translate="label">
+                            <label>Company Name</label>
+                            <frontend_type>text</frontend_type>
+                            <config_path>placetopay/merchantname</config_path>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </merchantname>
+                        <merchantdocument translate="label">
+                            <label>Merchant ID</label>
+                            <frontend_type>text</frontend_type>
+                            <config_path>placetopay/merchantdocument</config_path>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </merchantdocument>
+                    </fields>
+                </global>
+                <standard translate="label comment">
+                    <label>Website Payments Standard Settings</label>
+                    <fieldset_css>placetopay-config</fieldset_css>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <title translate="label comment">
+                            <label>Title</label>
+                            <comment>It is recommended to set this value per store views.</comment>
+                            <config_path>payment/placetopay_standard/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <country translate="label">
+                            <label>Country</label>
+                            <frontend_type>select</frontend_type>
+                            <config_path>payment/placetopay_standard/country</config_path>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_Country</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </country>
+                        <environment translate="label">
+                            <label>Environment</label>
+                            <frontend_type>select</frontend_type>
+                            <config_path>payment/placetopay_standard/environment</config_path>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_Environment</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </environment>
+                        <login translate="label comment">
+                            <label>Site Login</label>
+                            <config_path>payment/placetopay_standard/login</config_path>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </login>
+                        <trankey translate="label comment">
+                            <label>Site TranKey</label>
+                            <config_path>payment/placetopay_standard/trankey</config_path>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trankey>
+                        <active translate="label source_model">
+                            <label>Enabled</label>
+                            <config_path>payment/placetopay_standard/active</config_path>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <paymentMethod>
+                            <label>Payment method available</label>
+                            <comment>Payment methods available for this promotion, empty means all of them</comment>
+                            <config_path>payment/placetopay_standard/payment_method</config_path>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_Franchises</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </paymentMethod>
+                        <description translate="label comment">
+                            <label>Payment description</label>
+                            <comment>It is recommended to set this value per store views.</comment>
+                            <config_path>payment/placetopay_standard/description</config_path>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description>
+                        <hascifin translate="label source_model">
+                            <label>Enable CIFIN Message</label>
+                            <config_path>payment/placetopay_standard/hascifin</config_path>
+                            <comment>Select yes to display the warning message at payment.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hascifin>
+                        <final_page translate="label source_model">
+                            <label>Final page</label>
+                            <config_path>payment/placetopay_standard/final_page</config_path>
+                            <frontend_type>select</frontend_type>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_FinalPage</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </final_page>
+                        <skipResult translate="label source_model">
+                            <label>Skip result page on redirection</label>
+                            <config_path>payment/placetopay_standard/skip_result</config_path>
+                            <comment>Select yes to avoid display the result page at payment.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </skipResult>
+                    </fields>
+                </standard>
+                <promotion translate="label comment">
+                    <label>Website Payments Promotion Settings</label>
+                    <fieldset_css>placetopay-config</fieldset_css>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <title translate="label comment">
+                            <label>Title</label>
+                            <comment>It is recommended to set this value per store views.</comment>
+                            <config_path>payment/placetopay_promotion/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <country translate="label">
+                            <label>Country</label>
+                            <frontend_type>select</frontend_type>
+                            <config_path>payment/placetopay_promotion/country</config_path>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_Country</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </country>
+                        <environment translate="label">
+                            <label>Environment</label>
+                            <frontend_type>select</frontend_type>
+                            <config_path>payment/placetopay_promotion/environment</config_path>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_Environment</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </environment>
+                        <login translate="label comment">
+                            <label>Site Login</label>
+                            <config_path>payment/placetopay_promotion/login</config_path>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </login>
+                        <trankey translate="label comment">
+                            <label>Site TranKey</label>
+                            <config_path>payment/placetopay_promotion/trankey</config_path>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trankey>
+                        <active translate="label source_model">
+                            <label>Enabled</label>
+                            <config_path>payment/placetopay_promotion/active</config_path>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <paymentMethod>
+                            <label>Payment method available</label>
+                            <comment>Payment methods available for this promotion, empty means all of them</comment>
+                            <config_path>payment/placetopay_promotion/payment_method</config_path>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_Franchises</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </paymentMethod>
+                        <daterange translate="label comment">
+                            <label>Promotion availability</label>
+                            <config_path>payment/placetopay_promotion/daterange</config_path>
+                            <comment><![CDATA[Range string in which this option will be available, eg LMJS8-12|V17:20-21:05|!S9-10 <a href="https://github.com/dnetix/utils/blob/master/src/Dnetix/Dates/DateRangeChecker.php" target="_blank">More info</a>]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </daterange>
+                        <description translate="label comment">
+                            <label>Payment description</label>
+                            <comment>It is recommended to set this value per store views.</comment>
+                            <config_path>payment/placetopay_promotion/description</config_path>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description>
+                        <hascifin translate="label source_model">
+                            <label>Enable CIFIN Message</label>
+                            <config_path>payment/placetopay_promotion/hascifin</config_path>
+                            <comment>Select yes to display the warning message at payment.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hascifin>
+                        <final_page translate="label source_model">
+                            <label>Final page</label>
+                            <config_path>payment/placetopay_promotion/final_page</config_path>
+                            <frontend_type>select</frontend_type>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_FinalPage</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </final_page>
+                        <skipResult translate="label source_model">
+                            <label>Skip result page on redirection</label>
+                            <config_path>payment/placetopay_promotion/skip_result</config_path>
+                            <comment>Select yes to avoid display the result page at payment.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </skipResult>
+                    </fields>
+                </promotion>
+                <advanced translate="label comment">
+                    <label>Advanced configuration</label>
+                    <fieldset_css>placetopay-advanced-config</fieldset_css>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <totaldue translate="label">
+                            <label>GrandTotal instead of TotalDue</label>
+                            <comment>Uses the function GrandTotal instead of TotalDue to obtain the order amount</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <config_path>placetopay/grandtotal</config_path>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </totaldue>
+                        <cachewsdl translate="label">
+                            <label>WSDL Cache type</label>
+                            <comment>Set the WSDL cache to use on PHP</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_WSDLCache</source_model>
+                            <config_path>placetopay/cache_wsdl</config_path>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cachewsdl>
+                        <expiration translate="label">
+                            <label>Expiration time</label>
+                            <comment>Minutes that the payment will be available</comment>
+                            <frontend_type>text</frontend_type>
+                            <config_path>placetopay/expiration</config_path>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </expiration>
+                        <ignoreTaxes translate="label">
+                            <label>Ignore tax information</label>
+                            <comment>If true, there will be no taxes sended to PlacetoPay</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <config_path>placetopay/ignoretaxes</config_path>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ignoreTaxes>
+                        <addressmap translate="label">
+                            <label>Address Map</label>
+                            <comment>Maps fields on the database with the required ones (city:region|address:postcode)</comment>
+                            <frontend_type>text</frontend_type>
+                            <config_path>placetopay/addressmap</config_path>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addressmap>
+                        <mobilemap translate="label">
+                            <label>Mobile Map</label>
+                            <comment>By default Magento comes with no cell number field, so type the one to map to this field</comment>
+                            <frontend_type>text</frontend_type>
+                            <config_path>placetopay/mobilemap</config_path>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mobilemap>
+                        <ignorePaymentMethod translate="label">
+                            <label>Ignore payment methods</label>
+                            <comment>If true, the payment methods will be ignored on the default option</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <config_path>placetopay/ignorepaymentmethod</config_path>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ignorePaymentMethod>
+                        <connectionType translate="label">
+                            <label>Connection type</label>
+                            <comment>Type of connection to use with PlacetoPay</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>EGM_PlacetoPay_Model_System_Config_Source_ConnectionTypes</source_model>
+                            <config_path>placetopay/connection_type</config_path>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </connectionType>
+                        <noBuyerFill translate="label">
+                            <label>Do not fill buyer information</label>
+                            <comment>If true, the buyer information will not be automatically filled</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <config_path>placetopay/no_buyer_fill</config_path>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </noBuyerFill>
+                        <taxRateParsing translate="label">
+                            <label>Tax rate parsing</label>
+                            <comment>Translates the Tax rate name to a Place to Pay tax name</comment>
+                            <frontend_type>text</frontend_type>
+                            <config_path>placetopay/tax_rate_parsing</config_path>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </taxRateParsing>
+                    </fields>
+                </advanced>
+                <information>
+                    <label>Information</label>
+                    <fieldset_css>placetopay-information</fieldset_css>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <notification_where>
+                            <label>Notification URL</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>EGM_PlacetoPay_Block_Adminhtml_System_Config_Form_Field_Url</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </notification_where>
+                    </fields>
+                </information>
+            </groups>
+        </placetopay>
+    </sections>
+</config>

@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <EGM_PlacetoPay>
+            <version>2.4.1.0</version>
+        </EGM_PlacetoPay>
+    </modules>
+
+    <global>
+        <models>
+            <placetopay>
+                <class>EGM_PlacetoPay_Model</class>
+                <resourceModel>placetopay_mysql4</resourceModel>
+            </placetopay>
+            <placetopay_mysql4>
+                <class>EGM_PlacetoPay_Model_Mysql4</class>
+                <entities>
+                    <api_debug>
+                        <table>placetopay_api_debug</table>
+                    </api_debug>
+                </entities>
+            </placetopay_mysql4>
+            <customer>
+                <rewrite>
+                    <customer>EGM_PlacetoPay_Model_Customer</customer>
+                </rewrite>
+            </customer>
+        </models>
+
+        <!-- declare resource setup for new module -->
+        <resources>
+            <!-- resource identifier -->
+            <placetopay_setup>
+                <!-- specify that this resource is a setup resource and used for upgrades -->
+                <setup>
+                    <!-- which module to look for install/upgrade files in -->
+                    <module>EGM_PlacetoPay</module>
+                    <class>EGM_PlacetoPay_Model_Mysql4_Setup</class>
+                </setup>
+            </placetopay_setup>
+        </resources>
+
+        <!-- IMPORTANT: if you use your own namespace (i.e. CompanyName) you also have to declare blocks group for new module. See topic: http://www.magentocommerce.com/boards/viewthread/22416/#t102732 -->
+        <blocks>
+            <placetopay>
+                <class>EGM_PlacetoPay_Block</class>
+            </placetopay>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_view_tab_info>EGM_PlacetoPay_Block_Adminhtml_Sales_Order_View_Tab_Info</sales_order_view_tab_info>
+                </rewrite>
+            </adminhtml>
+            <sales>
+                <rewrite>
+                    <order_info>EGM_PlacetoPay_Block_Sales_Order_Info</order_info>
+                </rewrite>
+            </sales>
+        </blocks>
+        <payment>
+            <groups>
+                <placetopay>PlacetoPay</placetopay>
+            </groups>
+        </payment>
+        <helpers>
+            <placetopay>
+                <class>EGM_PlacetoPay_Helper</class>
+            </placetopay>
+        </helpers>
+    </global>
+
+    <frontend>
+        <secure_url>
+            <placetopay_processing>/placetopay/processing</placetopay_processing>
+        </secure_url>
+        <routers>
+            <placetopay>
+                <use>standard</use>
+                <args>
+                    <module>EGM_PlacetoPay</module>
+                    <frontName>placetopay</frontName>
+                </args>
+            </placetopay>
+        </routers>
+        <translate>
+            <modules>
+                <EGM_PlacetoPay>
+                    <files>
+                        <default>EGM_PlacetoPay.csv</default>
+                    </files>
+                </EGM_PlacetoPay>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <placetopay>
+                    <file>placetopay.xml</file>
+                </placetopay>
+            </updates>
+            <sales_order_view>
+                <reference name="sales.order.info">
+                    <action method="setTemplate">
+                        <template>placetopay/sales/order/info.phtml</template>
+                    </action>
+                </reference>
+            </sales_order_view>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <EGM_PlacetoPay>
+                    <files>
+                        <default>EGM_PlacetoPay.csv</default>
+                    </files>
+                </EGM_PlacetoPay>
+            </modules>
+        </translate>
+        <layout>
+            <sales_order_view>
+                <reference name="sales.order.info">
+                    <action method="setTemplate">
+                        <template>placetopay/sales/order/info.phtml</template>
+                    </action>
+                </reference>
+            </sales_order_view>
+        </layout>
+    </adminhtml>
+
+    <crontab>
+        <jobs>
+            <placetopay_resolve_transactions>
+                <schedule>
+                    <cron_expr>0 */6 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>placetopay/observer::resolvePendingTransactions</model>
+                </run>
+            </placetopay_resolve_transactions>
+        </jobs>
+    </crontab>
+
+    <default>
+        <placetopay>
+            <merchantname></merchantname>
+            <merchantdocument></merchantdocument>
+            <expiration>120</expiration>
+            <mobilemap>fax</mobilemap>
+            <cachewsdl>0</cachewsdl>
+            <ignorepaymentmethod>1</ignorepaymentmethod>
+            <ignoretaxes>0</ignoretaxes>
+            <connection_type>rest</connection_type>
+            <noBuyerFill>0</noBuyerFill>
+            <taxRateParsing>IVATaxRate:valueAddedTax|ICETaxRate:ice</taxRateParsing>
+        </placetopay>
+        <payment>
+            <placetopay_standard>
+                <active>0</active>
+                <model>placetopay/standard</model>
+                <title>PlacetoPay - Tarjetas de crédito y débitos a cuenta</title>
+                <description>Pago en PlacetoPay</description>
+                <allowspecific>0</allowspecific>
+                <country>CO</country>
+                <environment>testing</environment>
+                <display_logo>CR_VS,RM_MC,CR_AM,CR_DN,_PSE_</display_logo>
+                <final_page>order_info</final_page>
+                <group>placetopay</group>
+                <skipResult>0</skipResult>
+            </placetopay_standard>
+            <placetopay_promotion>
+                <active>0</active>
+                <model>placetopay/promotion</model>
+                <title>PlacetoPay - Promociones especiales</title>
+                <description>Pago en PlacetoPay</description>
+                <allowspecific>0</allowspecific>
+                <country>CO</country>
+                <environment>testing</environment>
+                <display_logo>CR_AM</display_logo>
+                <daterange>A</daterange>
+                <final_page>order_info</final_page>
+                <group>placetopay</group>
+                <skipResult>0</skipResult>
+            </placetopay_promotion>
+        </payment>
+    </default>
+</config>
